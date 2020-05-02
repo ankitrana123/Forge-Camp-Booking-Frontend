@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col">
+      <div class="card border-info mb-3">
+        <div class="card-header">Available Camps</div>
+        <!-- <div *ngIf="!loadingComplete">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div> -->
+        <div class="card border-info mb-3">
+          <div class="card-text">
+            <table class="table" *ngIf="CampList && CampList.length > 0; else noCamps">
+              <thead>
+                <tr>
+                  <th scope="col">Camp Image</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Maximum Capacity</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let camp of CampList">
+                  <td><img class="card-img-top" height="200px" width="50px" [src]='camp.image' alt="Card image cap">
+                  </td>
+                  <td>{{ camp.title}}</td>
+                  <td>{{ camp.description }}</td>
+                  <td>{{ camp.amount }}</td>
+                  <td>{{ camp.capacity}}</td>
+                  <td>
+                    <!-- <span class="view">
+                        <i class="fas fa-eye"></i>
+                    </span> -->
+                  </td>
+                  <td>
+                    <span class="Update" (click)="updateCamp(camp)">
+                        <i class="fas fa-pen-alt" ></i>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="Delete">
+                      <i class="far fa-trash-alt" (click)="DeleteCamp(camp)"></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noCamps>
+    <!-- <div *ngIf="loadingComplete"> -->
+      <div class="alert alert-danger">
+        <div class="row">
+          <div class="col-2">
+            <span>No Camps Available</span>
+          </div>
+          <div class="col">
+            <button class="btn btn-sm btn-info" (click)="navigateToCreateCamp()">Create Camp</button>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+  </ng-template>

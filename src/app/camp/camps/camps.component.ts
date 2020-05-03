@@ -93,4 +93,10 @@ export class CampsComponent implements OnInit {
     return Array.from({length: 10}, (x,i) => i+1);
   }
 
+  bookMyCamp(camp:ICamp) {
+    this.router.navigate(['/bookCamp',camp.id]);
+    // console.log('update req');
+  }
+
+
 }

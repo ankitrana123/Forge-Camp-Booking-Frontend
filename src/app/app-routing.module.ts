@@ -6,6 +6,9 @@ import { CampNewComponent } from './camp/camp-new/camp-new.component';
 import { AllCampsComponent } from './camp/managecamp/all-camps/all-camps.component';
 import { AdminLoginComponent } from './camp/managecamp/admin-login/admin-login.component';
 import { UpdateCampComponent } from './camp/managecamp/update-camp/update-camp.component';
+import { BookcampComponent } from './booking/bookcamp/bookcamp.component';
+import { ManagebookingComponent } from './booking/managebooking/managebooking.component';
+import { EdibookingComponent } from './booking/editbooking/edibooking.component';
 
 
 
@@ -15,8 +18,10 @@ const routes : Routes = [
   {path:'Camp/CreateCamp',component:CampNewComponent},
    {path:'ManageCamp/AllCamps',component:AllCampsComponent},
    {path:'AdminLogin',component:AdminLoginComponent},
-   {path:'UpdateCamp/:id',component:UpdateCampComponent}
-   ,
+   {path:'UpdateCamp/:id',component:UpdateCampComponent},
+   {path:'bookCamp/:id',component:BookcampComponent},
+   {path:'manageBooking',component:ManagebookingComponent}
+   ,{path:'editbooking/:id',component:EdibookingComponent},
    {path:'',redirectTo:'Camp/AllCampDetails',pathMatch:'full'}
 
 ]

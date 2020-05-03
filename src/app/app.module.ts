@@ -6,16 +6,13 @@ import { AppComponent } from './app.component';
 import { CampModule } from './camp/camp.module';
 import { BookcampComponent } from './booking/bookcamp/bookcamp.component';
 import { ManagebookingComponent } from './booking/managebooking/managebooking.component';
-import { ConfirmbookingComponent } from './booking/confirmbooking/confirmbooking.component';
+import { BookingModule } from './booking/booking.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookcampComponent,
-    ManagebookingComponent,
-    ConfirmbookingComponent,
     
     
   ],
@@ -23,6 +20,7 @@ import { ConfirmbookingComponent } from './booking/confirmbooking/confirmbooking
     BrowserModule,
     AppRoutingModule,
     CampModule,
+    BookingModule
     
     
   ],

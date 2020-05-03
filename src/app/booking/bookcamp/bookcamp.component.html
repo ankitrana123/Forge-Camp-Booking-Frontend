@@ -1,1 +1,81 @@
-<p>bookcamp works!</p>
+
+<form class="needs-validation" novalidate [formGroup]="bookForm" (ngSubmit)="OnFormSubmit()">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Book Camp</h2>
+            <div class="form-group">
+            <label for="Capacity">Total No. of Nights</label>
+            <input type="number" class="form-control"  id="Capacity" formControlName="TotalNights" placeholder="Total No. of Nights" required>
+            
+
+            </div>
+            
+            <div class="form-group">
+                <label for="CheckIn">Check In Date</label>
+                <input type="date" class="form-control" id="CheckIn" formControlName="CheckInDate" placeholder="format dd-mm-yyyy" required>
+            
+            </div>
+            <div class="form-group">
+                <label for="CheckOut">Check Out Date</label>
+                <input type="date" class="form-control" id="CheckOut"  formControlName="CheckOutDate" placeholder="format dd-mm-yyyy" required>
+            </div>
+
+            <div class="form-group">
+                <label for="billingaddress">Billing Address</label>
+                <input type="text" class="form-control" id="billingaddress"  formControlName="billingaddress" placeholder="Billing Address">
+            </div>
+
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state"  formControlName="state" placeholder="State">
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country"  formControlName="country" placeholder="Country" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="number" class="form-control" id="phone"  formControlName="CellPhone" placeholder="Phone Number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="zipcode">Zip Code</label>
+                <input type="number" class="form-control" id="zipcode"  formControlName="zipcode" placeholder="Zip Code" required>
+            </div>
+        
+        </div>
+      <div class="col-md-6">
+          <h2>Camp Details:</h2>
+        <div *ngIf ="Camp" class="card" style="width: 15rem; margin: 15px;">
+            <img class="card-img-top" [src]='Camp.image' alt="Card image cap">
+            <div class="card-body">
+                <div class="row">
+                <h5 class="card-title">{{Camp.title}}</h5>
+                </div>
+                <p class="card-text">{{Camp.description}}</p>
+                <div>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>{{Camp.amount | currency:'INR'}}</td>
+                        <td>{{Camp.capacity}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+    </div>
+    </div>
+    
+   
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>

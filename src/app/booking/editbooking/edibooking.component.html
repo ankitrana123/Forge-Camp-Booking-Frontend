@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col">
+      <div class="card border-info mb-3">
+        <div class="card-header">Booking</div>
+        
+        <div class="card border-info mb-3">
+          <div class="card-text">
+            <table class="table" >
+              <thead>
+                <tr>
+                  <th scope="col">Total Nights</th>
+                  <th scope="col">Check In date</th>
+                  <th scope="col">Check Out Date</th>
+                  <th scope="col">Billing address</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">State</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">Zip Code</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="requiredBooking">
+                  
+                  <td>{{ requiredBooking.totalNights}}</td>
+                  <td>{{ requiredBooking.checkInDate | date:'short'}}</td>
+                  <td>{{ requiredBooking.checkOutDate }}</td>
+                  <td>{{ requiredBooking.billingAddress}}</td>
+                  <td>{{ requiredBooking.cellPhone}}</td>
+                  <td>{{ requiredBooking.state}}</td>
+                  <td>{{ requiredBooking.country}}</td>
+                  <td>{{ requiredBooking.zipCode}}</td>
+                  <td>
+                    <span class="Delete">
+                      <i class="far fa-trash-alt" 
+                      (click)="DeleteBooking(requiredBooking.referenceNumber)"></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+ 

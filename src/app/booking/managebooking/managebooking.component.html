@@ -1,1 +1,8 @@
-<p>managebooking works!</p>
+<form class="form-inline" [formGroup]="bookManageForm" (ngSubmit)="OnFormSubmit()">
+    <div class="form-group mb-2">
+        <label for="ReferenceNumber">Booking Reference Number: </label>
+        <input type="text" class="form-control" id="ReferenceNumber" formControlName="referencenumber" placeholder="Booking Reference Number">
+      </div>
+   
+    <button type="submit" class="btn btn-primary mb-2" >Find Booking</button>
+  </form>

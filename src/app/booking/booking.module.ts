@@ -8,13 +8,19 @@ import { ManagebookingComponent } from './managebooking/managebooking.component'
 import { CampServices } from '../camp/Service/CampServices';
 import { EdibookingComponent } from './editbooking/edibooking.component';
 
-
-
 @NgModule({
-  declarations: [BookcampComponent,ManagebookingComponent, EdibookingComponent],
-  imports: [
-    CommonModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule
+  declarations: [
+    BookcampComponent,
+    ManagebookingComponent,
+    EdibookingComponent,
   ],
-  providers:[CampServices]
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  providers: [CampServices],
 })
-export class BookingModule { }
+export class BookingModule {}

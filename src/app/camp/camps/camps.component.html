@@ -1,90 +1,116 @@
 <!--  -->
 <div class="row">
-        
-        <div class="col-md-4">
-            <form class="needs-validation FilterCamps" novalidate [formGroup]="FilterCamps" (ngSubmit)="onFormSubmit()">
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="row filterControls">
-                            <div class="col">CheckInDate</div>
-                            <div class="col-md-2"></div>
-                            <input type="date" id="CheckInDate" [value]='checkIn' formControlName ="checkInDate" [ngClass]="getControlValidationClasses(checkInControl)">
-                            <div class="invalid-feedback" *ngIf="checkInControl.touched && checkInControl.errors?.required">
-                              This field is required
-                            </div>
-                          </div>
-                          
-                          <div class="row filterControls">
-                            <div class="col">CheckOutDate</div>
-                            <div class="col-md-2"></div>
-                            <input type="date" id="CheckOutDate"  [value]='checkOut' formControlName="checkOutDate" [ngClass]="getControlValidationClasses(checkOutControl)">
-                            <div class="invalid-feedback" *ngIf="checkOutControl.touched && checkOutControl.errors?.required">
-                              This field is required
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col">Capacity</div>
-                            <div class="col-md-6">
-                              <select formControlName="capacity">
-                                <option [value]="0" selected="selected">Any</option>
-                                <option *ngFor="let capacity of populateFilter() " [value]=capacity>
-                                  {{capacity}}
-                                </option>
-                              </select>
-                            </div>
-                          </div>
-                          <div>
-                            <button type="submit" class="btn btn-secondary">Filter</button>
-                          </div>
-                      
-                    </div>
-                  </div>
-
-            </form>
-    
-    	</div>
-
-
-
-
-    <div class="col-md-8">
-        <div style="float: left; width: 75%;">
-            <!-- use ngIf to filter camps according to max capacity -->
-            <div class="card-group card-deck">
-            <div *ngFor="let camp of CampList ">
-                <div class="card" style="width: 15rem; margin: 15px;">
-                <img class="card-img-top" [src]='camp.image' alt="Card image cap">
-                <div class="card-body">
-                    <div class="row">
-                    <h5 class="card-title">{{camp.name}}</h5>
-                    </div>
-                    <p class="card-text">{{camp.description}}</p>
-                    <div>
-                    <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Capacity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>{{camp.amount | currency:'INR'}}</td>
-                        <td>{{camp.capacity}}</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                    </div>
-                    <div>
-                    <button style="margin-left: 40px; margin-top: -20px;" class="btn btn-primary" (click)="bookMyCamp(camp)">Book Camp</button>
-                    
-                    </div>
-                </div>
-                </div>
+  <div class="col-md-4">
+    <form
+      class="needs-validation FilterCamps"
+      novalidate
+      [formGroup]="FilterCamps"
+      (ngSubmit)="onFormSubmit()"
+    >
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="row filterControls">
+            <div class="col">CheckInDate</div>
+            <div class="col-md-2"></div>
+            <input
+              type="date"
+              id="CheckInDate"
+              [value]="checkIn"
+              formControlName="checkInDate"
+              [ngClass]="getControlValidationClasses(checkInControl)"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="checkInControl.touched && checkInControl.errors?.required"
+            >
+              This field is required
             </div>
+          </div>
+
+          <div class="row filterControls">
+            <div class="col">CheckOutDate</div>
+            <div class="col-md-2"></div>
+            <input
+              type="date"
+              id="CheckOutDate"
+              [value]="checkOut"
+              formControlName="checkOutDate"
+              [ngClass]="getControlValidationClasses(checkOutControl)"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                checkOutControl.touched && checkOutControl.errors?.required
+              "
+            >
+              This field is required
             </div>
+          </div>
+
+          <div class="row">
+            <div class="col">Capacity</div>
+            <div class="col-md-6">
+              <select formControlName="capacity">
+                <option [value]="0" selected="selected">Any</option>
+                <option
+                  *ngFor="let capacity of populateFilter() "
+                  [value]="capacity"
+                >
+                  {{ capacity }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-secondary">Filter</button>
+          </div>
         </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-8">
+    <div style="float: left; width: 75%;">
+      <!-- use ngIf to filter camps according to max capacity -->
+      <div class="card-group card-deck">
+        <div *ngFor="let camp of CampList ">
+          <div class="card" style="width: 15rem; margin: 15px;">
+            <img class="card-img-top" [src]="camp.image" alt="Card image cap" />
+            <div class="card-body">
+              <div class="row">
+                <h5 class="card-title">{{ camp.name }}</h5>
+              </div>
+              <p class="card-text">{{ camp.description }}</p>
+              <div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Capacity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ camp.amount | currency: "INR" }}</td>
+                      <td>{{ camp.capacity }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <button
+                  style="margin-left: 40px; margin-top: -20px;"
+                  class="btn btn-primary"
+                  (click)="bookMyCamp(camp)"
+                >
+                  Book Camp
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

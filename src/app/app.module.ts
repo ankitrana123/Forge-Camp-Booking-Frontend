@@ -6,24 +6,10 @@ import { AppComponent } from './app.component';
 import { CampModule } from './camp/camp.module';
 import { BookingModule } from './booking/booking.module';
 
-
-
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CampModule,
-    BookingModule
-    
-    
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, CampModule, BookingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

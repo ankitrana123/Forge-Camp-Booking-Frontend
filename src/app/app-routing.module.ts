@@ -9,6 +9,9 @@ import { UpdateCampComponent } from './camp/managecamp/update-camp/update-camp.c
 import { BookcampComponent } from './booking/bookcamp/bookcamp.component';
 import { ManagebookingComponent } from './booking/managebooking/managebooking.component';
 import { EdibookingComponent } from './booking/editbooking/edibooking.component';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
@@ -16,12 +19,16 @@ const routes : Routes = [
   {path:'Camp/AllCampDetails',component:CampsComponent},
   {path:'Camp/GetCampDetailsById/:campId',component:CampsDetailComponent},
   {path:'Camp/CreateCamp',component:CampNewComponent},
-   {path:'ManageCamp/AllCamps',component:AllCampsComponent},
+   {path:'ManageCamp/AllCamps',component:AllCampsComponent,canActivate:[AuthGuard]},
    {path:'AdminLogin',component:AdminLoginComponent},
-   {path:'UpdateCamp/:id',component:UpdateCampComponent},
+   {path:'UpdateCamp/:id',component:UpdateCampComponent,canActivate:[AuthGuard]},
    {path:'bookCamp/:id',component:BookcampComponent},
    {path:'manageBooking',component:ManagebookingComponent}
    ,{path:'editbooking/:id',component:EdibookingComponent},
+   {
+     path:'login',component:UserComponent,
+    children:[{path:'',component:SignInComponent}]  //---> sign In is a child component for user
+  },
    {path:'',redirectTo:'Camp/AllCampDetails',pathMatch:'full'}
 
 ]

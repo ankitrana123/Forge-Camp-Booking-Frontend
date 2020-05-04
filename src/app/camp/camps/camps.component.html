@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                               <select formControlName="capacity">
                                 <option [value]="0" selected="selected">Any</option>
-                                <option *ngFor="let capacity of populateFilter()" [value]=capacity>
+                                <option *ngFor="let capacity of populateFilter() " [value]=capacity>
                                   {{capacity}}
                                 </option>
                               </select>
@@ -53,7 +53,7 @@
         <div style="float: left; width: 75%;">
             <!-- use ngIf to filter camps according to max capacity -->
             <div class="card-group card-deck">
-            <div *ngFor="let camp of CampList">
+            <div *ngFor="let camp of CampList ">
                 <div class="card" style="width: 15rem; margin: 15px;">
                 <img class="card-img-top" [src]='camp.image' alt="Card image cap">
                 <div class="card-body">

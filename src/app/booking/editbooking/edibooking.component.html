@@ -23,8 +23,8 @@
                 <tr *ngIf="requiredBooking">
                   
                   <td>{{ requiredBooking.totalNights}}</td>
-                  <td>{{ requiredBooking.checkInDate | date:'short'}}</td>
-                  <td>{{ requiredBooking.checkOutDate }}</td>
+                  <td>{{ requiredBooking.checkInDate | date:'shortDate'}}</td>
+                  <td>{{ requiredBooking.checkOutDate | date:'shortDate'}}</td>
                   <td>{{ requiredBooking.billingAddress}}</td>
                   <td>{{ requiredBooking.cellPhone}}</td>
                   <td>{{ requiredBooking.state}}</td>

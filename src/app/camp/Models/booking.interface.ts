@@ -1,13 +1,15 @@
 export interface IBooking {
     capacity:number;
-    checkin: Date;
-    checkout: Date;
+    checkInDate: Date;
+    checkOutDate: Date;
     country: string;
     zipcode: number;
     phone:number;
-    billingaddress:string;
+    billingAddress:string;
     state:string;
     amount:number;
-
+    campId:string;
+    userId:string;
+    referenceNumber:string;
 
   }

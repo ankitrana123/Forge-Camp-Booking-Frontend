@@ -16,11 +16,16 @@ export class CampsComponent implements OnInit {
   checkInControl: FormControl
   checkOutControl : FormControl
   capacityControl : FormControl
+  
+  
+
   checkIn: any
   checkOut :any
   capacity : any
   // camps: ICamp[]
   FilterCamps : FormGroup
+
+   p:number=1; 
 
   constructor(private readonly service:CampServices,private readonly router:Router) { 
     

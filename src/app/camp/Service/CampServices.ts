@@ -1,6 +1,6 @@
 import {v4 as uuidv4 } from 'uuid'
 import{Injectable} from '@angular/core'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ICamp } from '../Models/camp.interface';
 import { IBooking } from '../Models/booking.interface';
 
@@ -46,13 +46,19 @@ export class CampServices{
     }
 
 
-// ----------------Booking services---------
+
 bookCamp(data) {
     
         
          console.log(data)
     //use angular http to save data
      return this.Http.post('http://localhost:60045/Api/Booking/CreateBooking',data);
+}
+
+UserAuthentication(userName:string,password:string){
+     var data =  "username="+userName+"&password="+password+"&grant_type=password";
+     var reqHeader = new HttpHeaders({'Context-Type':'application/x-www-urlencoded'})
+     return this.Http.post('http://localhost:60045/token',data,{headers:reqHeader});
 }
     
 }

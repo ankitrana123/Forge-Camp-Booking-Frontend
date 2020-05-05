@@ -5,7 +5,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ManagebookingComponent } from './managebooking/managebooking.component';
-import { CampServices } from '../camp/Service/CampServices';
+import { Service } from '../camp/Service/Service';
 import { EdibookingComponent } from './editbooking/edibooking.component';
 
 @NgModule({
@@ -21,6 +21,6 @@ import { EdibookingComponent } from './editbooking/edibooking.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [CampServices],
+  providers: [Service],
 })
 export class BookingModule {}

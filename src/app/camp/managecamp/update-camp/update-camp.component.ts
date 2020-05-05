@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validator, Validators} from '@angular/forms';
 
 import { Router,ActivatedRoute } from '@angular/router';
-import { CampServices } from '../../Service/CampServices';
+import { Service } from '../../Service/Service';
 import { ICamp } from '../../Models/camp.interface';
 
 
@@ -26,20 +26,21 @@ export class UpdateCampComponent implements OnInit {
 
   file: File;
    base64textString: string
-   imageUrl: string | ArrayBuffer =
-   "assets/img/camp3.png";
+   imageUrl: string | ArrayBuffer;
    fileName: string = "No file selected" 
 
    enterImage:boolean=true;
 
-  constructor(private services:CampServices,private router:Router,private activatedRouter:ActivatedRoute) { }
-
+  constructor(private services:Service,private router:Router,private activatedRouter:ActivatedRoute) { }
+ /**
+  * Get the campId from the activated route snapshot and then get the details of that camp by its
+  * campId
+  */
   ngOnInit() {
     this.campId=this.activatedRouter.snapshot.paramMap.get('id')
     this.services.getCampById((this.campId)).subscribe((response:ICamp)=>{
       this.Camp = response
       this.imageUrl = this.Camp.image
-      //  this.formInitiaLizer()
 
     })
 
@@ -61,6 +62,9 @@ export class UpdateCampComponent implements OnInit {
     console.log(this.amountControl);
   }
 
+  /**
+   * Handle the image input 
+   */
   handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.base64textString= btoa(binaryString);
@@ -84,7 +88,9 @@ export class UpdateCampComponent implements OnInit {
     }
   }
 
- 
+ /**
+  * get the form data and then post the data to UpdateCamp() method
+  */
   OnFormSubmit(){
 
     if(!this.base64textString){

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CampServices } from '../Service/CampServices';
+import { Service } from '../Service/Service';
 
 @Component({
   selector: 'app-container',
@@ -10,14 +10,14 @@ import { CampServices } from '../Service/CampServices';
 export class ContainerComponent implements OnInit {
   message: boolean;
 
-  constructor(private router: Router, private service: CampServices) {}
+  constructor(private router: Router, private service: Service) {}
 
   ngOnInit(): void {
     this.service.sharedMessage.subscribe((message) => (this.message = message));
   }
 
   logOut() {
-    this.service.nextMessage(false);
+    this.service.isAdmin(false);
     localStorage.removeItem('userToken');
     this.router.navigate(['/AdminLogin']);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
-import { CampServices } from '../Service/CampServices';
+import { Service } from '../Service/Service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +25,7 @@ export class CampNewComponent implements OnInit {
 
   enterImage: boolean = true;
 
-  constructor(private services: CampServices, private router: Router) {}
+  constructor(private services: Service, private router: Router) {}
 
   ngOnInit() {
     this.amountControl = new FormControl('', [Validators.required]);
@@ -48,7 +48,7 @@ export class CampNewComponent implements OnInit {
   handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
-    //console.log(btoa(binaryString));
+   
   }
   onFileChange(file: File) {
     if (file) {

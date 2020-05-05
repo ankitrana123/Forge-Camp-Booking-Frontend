@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CampServices } from 'src/app/camp/Service/CampServices';
+import { Service } from 'src/app/camp/Service/Service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ICamp } from 'src/app/camp/Models/camp.interface';
+
 import {
   FormGroup,
   FormControl,
@@ -15,7 +16,7 @@ import {
   styleUrls: ['./managebooking.component.css'],
 })
 export class ManagebookingComponent implements OnInit {
-  booking;
+  
   bookingId: string;
 
   public bookManageForm: FormGroup;
@@ -24,11 +25,14 @@ export class ManagebookingComponent implements OnInit {
   textControl:FormControl;
 
   constructor(
-    private services: CampServices,
+    private services: Service,
     private router: Router,
     private activatedRouter: ActivatedRoute
   ) {}
 
+  /**
+   * Initialize the text and form control values
+   */
   ngOnInit(): void {
     this.referencenumberControl = new FormControl('', [Validators.required]);
     this.textControl = new FormControl('',[Validators.required]);
@@ -37,13 +41,17 @@ export class ManagebookingComponent implements OnInit {
       referencenumber: this.referencenumberControl,
     });
   }
+  /**
+   * Pass the form book values for booking reference number 
+   */
   OnFormSubmit() {
-    let booknumber = this.bookManageForm.value['referencenumber'];
-    // console.log(booknumber);
-
-    this.router.navigate(['/editbooking', booknumber]);
+    let bookingReferenceNumber = this.bookManageForm.value['referencenumber'];
+    this.router.navigate(['/editbooking', bookingReferenceNumber]);
   }
-
+/**
+ * get Validation control for the given Form control
+ * i.e valid or invalid
+ */
   getControlValidationClasses(control: FormControl) {
     return {
       'is-invalid': control.touched && control.invalid,

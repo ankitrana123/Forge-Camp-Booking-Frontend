@@ -29,7 +29,7 @@
           formControlName="CheckInDate"
           placeholder="format dd-mm-yyyy"
           required
-          [ngClass]="getControlValidationClasses(checkinControl)"
+          [ngClass]="getControlValidationClasses(checkInDateControl)"
         />
       </div>
       <div class="form-group">
@@ -41,7 +41,7 @@
           formControlName="CheckOutDate"
           placeholder="format dd-mm-yyyy"
           required
-          [ngClass]="getControlValidationClasses(checkoutControl)"
+          [ngClass]="getControlValidationClasses(checkOutDateControl)"
         />
       </div>
 
@@ -51,10 +51,10 @@
           type="text"
           class="form-control"
           id="billingaddress"
-          formControlName="billingaddress"
+          formControlName="billingAddress"
           placeholder="Billing Address"
           required
-          [ngClass]="getControlValidationClasses(billingaddressControl)"
+          [ngClass]="getControlValidationClasses(billingAddressControl)"
         />
         <div class="valid-feedback" *ngIf="textControl.valid">
           Looks good!
@@ -73,7 +73,7 @@
           type="text"
           class="form-control"
           id="state"
-          formControlName="state"
+          formControlName="State"
           placeholder="State"
           required
           [ngClass]="getControlValidationClasses(stateControl)"
@@ -95,10 +95,10 @@
           type="text"
           class="form-control"
           id="country"
-          formControlName="country"
+          formControlName="Country"
           placeholder="Country"
           required
-          [ngClass]="getControlValidationClasses(countryControl)"
+          [ngClass]="getControlValidationClasses(CountryControl)"
         />
         <div class="valid-feedback" *ngIf="textControl.valid">
           Looks good!
@@ -120,7 +120,7 @@
           formControlName="CellPhone"
           placeholder="Phone Number"
           required
-          [ngClass]="getControlValidationClasses(phoneControl)"
+          [ngClass]="getControlValidationClasses(PhoneControl)"
         />
         <div class="valid-feedback" *ngIf="textControl.valid">
           Looks good!
@@ -139,10 +139,10 @@
           type="number"
           class="form-control"
           id="zipcode"
-          formControlName="zipcode"
+          formControlName="zipCode"
           placeholder="Zip Code"
           required
-          [ngClass]="getControlValidationClasses(zipcodeControl)"
+          [ngClass]="getControlValidationClasses(zipCodeControl)"
         />
         <div class="valid-feedback" *ngIf="textControl.valid">
           Looks good!

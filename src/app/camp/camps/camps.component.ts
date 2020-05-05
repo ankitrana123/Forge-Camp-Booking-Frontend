@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CampServices } from '../Service/CampServices';
+import { Service } from '../Service/Service';
 import { ICamp } from '../Models/camp.interface';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,14 +19,15 @@ export class CampsComponent implements OnInit {
   checkIn: any;
   checkOut: any;
   capacity: any;
-  // camps: ICamp[]
+  
   FilterCamps: FormGroup;
 
+  //total records to be seen for pagging on a page
   totalRecords: number
   page: number = 1
 
   constructor(
-    private readonly service: CampServices,
+    private readonly service: Service,
     private readonly router: Router
   ) {}
 
@@ -47,6 +48,9 @@ export class CampsComponent implements OnInit {
     this.textControl = new FormControl('', [Validators.required]);
   }
 
+/**
+ * initialize the camps controls and other data values
+ */
   FilteredCampsInit() {
     this.checkInControl = new FormControl(this.checkIn, [Validators.required]);
     this.checkOutControl = new FormControl(this.checkOut, [
@@ -59,28 +63,37 @@ export class CampsComponent implements OnInit {
       capacity: this.capacityControl,
     });
   }
-
-  allFilteredCamps(checkin, checkout, Capacity) {
-    console.log(checkin, checkout, Capacity);
+/**
+ * renders the camps acc. to the given params i.e.
+ * @param checkInDate the check in date of the camp
+ * @param checkOutDate the check out date of the camp
+ * @param capacity the capacity of the camp
+ */
+  allFilteredCamps(checkInDate, checkOutDate, capacity) {
+    console.log(checkInDate, checkOutDate, capacity);
     this.service
-      .getFilteredCamps(checkin, checkout, Capacity)
+      .getFilteredCamps(checkInDate, checkOutDate, capacity)
       .subscribe((res: ICamp[]) => {
         this.CampList = res;
       });
   }
-
-  getDate(d) {
+/**
+ * show the date inside the datepicker
+ */
+  getDate(date) {
     var output =
-      d.getFullYear() +
+      date.getFullYear() +
       '-' +
-      (d.getMonth() + 1 < 10 ? '0' : '') +
-      (d.getMonth() + 1) +
+      (date.getMonth() + 1 < 10 ? '0' : '') +
+      (date.getMonth() + 1) +
       '-' +
-      (d.getDate() < 10 ? '0' : '') +
-      d.getDate();
+      (date.getDate() < 10 ? '0' : '') +
+      date.getDate();
     return output;
   }
-
+/**
+ * Get the details of all the camps to be rendered on the page
+ */
   getAllCamps() {
     this.service.getAllCamps().subscribe((camps: ICamp[]) => {
       this.totalRecords = camps.length
@@ -88,10 +101,17 @@ export class CampsComponent implements OnInit {
     });
   }
 
+  /**
+   * Navigates to create a new camp
+   */
   navigateToCreateCamp() {
     this.router.navigateByUrl('/Api/Camp/CreateCamp');
   }
 
+/**
+ * Get the checkInDate and checkOutDate and Capacity onFormSubmit() and then pass to filter camps
+ * according to these params
+ */
   onFormSubmit() {
     const { checkInDate, checkOutDate, capacity } = this.FilterCamps.value;
     this.allFilteredCamps(checkInDate, checkOutDate, capacity);
@@ -103,11 +123,16 @@ export class CampsComponent implements OnInit {
       'is-valid': control.touched && control.valid,
     };
   }
-
+ /**
+  * Populate the drop down list with numbers upto 10
+  */
   populateFilter(): number[] {
     return Array.from({ length: 10 }, (x, i) => i + 1);
   }
 
+  /**
+   * Naviagtes to book camp component using its campid and books that camp
+   */
   bookMyCamp(camp: ICamp) {
     this.router.navigate(['/bookCamp', camp.id]);
   }

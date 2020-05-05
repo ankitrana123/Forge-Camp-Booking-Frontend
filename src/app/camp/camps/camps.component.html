@@ -6,7 +6,7 @@
       [formGroup]="FilterCamps"
       (ngSubmit)="onFormSubmit()"
     >
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;max-height: 25rem;">
         <div class="card-header">Search</div>
         <div class="card-body">
           <div class="row filterControls">
@@ -60,7 +60,7 @@
             <div class="col">Capacity</div>
             <div class="col-md-6">
               <select formControlName="capacity">
-                <option [value]="0" selected="selected">Any</option>
+                <option [value]="0" selected="selected" class="dropDown">Any</option>
                 <option
                   *ngFor="let capacity of populateFilter()"
                   [value]="capacity"
@@ -80,7 +80,6 @@
 
   <div class="col-md-8">
     <div style="float: left; width: 75%;">
-      <!-- use ngIf to filter camps according to max capacity -->
       <div class="card-group card-deck">
         <div
           *ngFor="

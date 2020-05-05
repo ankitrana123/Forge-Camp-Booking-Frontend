@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class EdibookingComponent implements OnInit {
   referenceNumber: string;
   requiredBooking;
+  isFutureBooking:boolean=false;
 
   constructor(
     private services: CampServices,
@@ -23,6 +24,8 @@ export class EdibookingComponent implements OnInit {
     this.services
       .getBookingByReferenceNumber(this.referenceNumber)
       .subscribe((res) => {
+        this.isFutureBooking= new Date() < new Date(res["checkInDate"])
+        // console.log(res);
         this.requiredBooking = res;
       });
   }

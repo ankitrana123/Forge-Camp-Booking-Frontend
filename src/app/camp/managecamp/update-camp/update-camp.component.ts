@@ -22,6 +22,7 @@ export class UpdateCampComponent implements OnInit {
   descriptionControl:FormControl;
   titleControl:FormControl;
   imageControl:FormControl;
+  textControl:FormControl;
 
   file: File;
    base64textString: string
@@ -46,7 +47,9 @@ export class UpdateCampComponent implements OnInit {
     this.capacityControl = new FormControl('',[Validators.required]);
     this.descriptionControl = new FormControl('',[Validators.required]);
     this.titleControl = new FormControl('',[Validators.required]);
+    this.textControl = new FormControl('',[Validators.required]);
     this.imageControl = new FormControl('')
+
 
     this.campForm = new FormGroup({
       amount: this.amountControl,
@@ -96,6 +99,13 @@ export class UpdateCampComponent implements OnInit {
       this.router.navigate(['/ManageCamp/AllCamps']);
     })
 
+  }
+
+  getControlValidationClasses(control: FormControl) {
+    return {
+      'is-invalid': control.touched && control.invalid,
+      'is-valid': control.touched && control.valid,
+    };
   }
 }
 

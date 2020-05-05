@@ -18,6 +18,8 @@ export class AllCampsComponent implements OnInit {
     this.getAllCamps()
   }
 
+   
+
   getAllCamps(){
     this.service.getAllCamps().subscribe((camps:ICamp[]) => {
       this.CampList = camps;

@@ -12,6 +12,7 @@ import { UpdateCampComponent } from './managecamp/update-camp/update-camp.compon
 import { AdminLoginComponent } from './managecamp/admin-login/admin-login.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { CampsDetailComponent } from './camps-detail/camps-detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CampsDetailComponent } from './camps-detail/camps-detail.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule
   ],
   exports: [ContainerComponent],
   providers: [CampServices, AuthGuard],

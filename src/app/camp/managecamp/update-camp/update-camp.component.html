@@ -1,47 +1,125 @@
-<form class="needs-validation" novalidate [formGroup]="campForm" (ngSubmit)="OnFormSubmit()">
-    <div class="row">
-        <div class="col-md-6">
-        <div class="form-group">
+<form
+  class="needs-validation"
+  novalidate
+  [formGroup]="campForm"
+  (ngSubmit)="OnFormSubmit()"
+>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
         <label for="CampName">Camp Name</label>
-        <input type="text" class="form-control"  id="CampName" formControlName="title" placeholder="Camp Name" required>
-        
-
-        </div>
-        <div class="form-group">
-            <label for="CampRate">Rate per Night</label>
-            <input type="text" class="form-control" id="CampRate" formControlName="amount" placeholder="Rate per Night" required>
-        
-        </div>
-        <div class="form-group">
-            <label for="Capacity">Capacity</label>
-            <input type="text" class="form-control" id="Capacity" formControlName="capacity" placeholder="Capacity" required>
-        
-        </div>
-        <div class="form-group">
-            <label for="Description">Description</label>
-            <textarea class="form-control" id="Description" rows="2" formControlName="description" placeholder="Description" required></textarea>
-        </div>
-        
+        <input
+          type="text"
+          class="form-control"
+          id="CampName"
+          formControlName="title"
+          placeholder="Camp Name"
+          required
+          [ngClass]="getControlValidationClasses(titleControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="CampRate">Rate per Night</label>
+        <input
+          type="text"
+          class="form-control"
+          id="CampRate"
+          formControlName="amount"
+          placeholder="Rate per Night"
+          required
+          [ngClass]="getControlValidationClasses(amountControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="Capacity">Capacity</label>
+        <input
+          type="text"
+          class="form-control"
+          id="Capacity"
+          formControlName="capacity"
+          placeholder="Capacity"
+          required
+          [ngClass]="getControlValidationClasses(capacityControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea
+          class="form-control"
+          id="Description"
+          rows="2"
+          formControlName="description"
+          placeholder="Description"
+          required
+          [ngClass]="getControlValidationClasses(descriptionControl)"
+        ></textarea>
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
     </div>
     <div class="col-md-6">
-        <button type="button" class="btn btn-link" routerLink='/ManageCamp/AllCamps'>Back to DashBoard</button>
+      <button
+        type="button"
+        class="btn btn-link"
+        routerLink="/ManageCamp/AllCamps"
+      >
+        Back to DashBoard
+      </button>
     </div>
-    
-    
+
     <div class="row top-buffer">
-        <div class="col-sm-5">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" accept="image/*" name="file" required #fileInput
-              (change)="onFileChange(fileInput.files[0])" />
-            <label class="custom-file-label" for="customFile">{{fileName}}</label>
-          </div>
-        </div>
-        <div>
-          <img height="200" width="300" class="border border-secondary rounded img" [src]="imageUrl" />
-          <p class="enterImage" *ngIf='enterImage'>Image will be displayed Here</p>
+      <div class="col-sm-5">
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            accept="image/*"
+            name="file"
+            required
+            #fileInput
+            (change)="onFileChange(fileInput.files[0])"
+            
+          />
+          <label class="custom-file-label" for="customFile">{{
+            fileName
+          }}</label>
         </div>
       </div>
-      
+      <div>
+        <img
+          height="200"
+          width="300"
+          class="border border-secondary rounded img"
+          [src]="imageUrl"
+        />
+        <p class="enterImage" *ngIf="enterImage">
+          Image will be displayed Here
+        </p>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -16,6 +16,7 @@ export class CampNewComponent implements OnInit {
   descriptionControl: FormControl;
   titleControl: FormControl;
   imageControl: FormControl;
+  textControl:FormControl;
 
   file: File;
   base64textString: string;
@@ -32,6 +33,7 @@ export class CampNewComponent implements OnInit {
     this.descriptionControl = new FormControl('', [Validators.required]);
     this.titleControl = new FormControl('', [Validators.required]);
     this.imageControl = new FormControl('');
+    this.textControl= new FormControl('', [Validators.required]);
 
     this.campForm = new FormGroup({
       amount: this.amountControl,

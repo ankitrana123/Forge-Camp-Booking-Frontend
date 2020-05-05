@@ -14,8 +14,15 @@
           id="CampName"
           formControlName="title"
           placeholder="Camp Name"
-          required
+          required 
+          [ngClass]="getControlValidationClasses(titleControl)"
         />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
       </div>
       <div class="form-group">
         <label for="CampRate">Rate per Night</label>
@@ -26,7 +33,14 @@
           formControlName="amount"
           placeholder="Rate per Night"
           required
+          [ngClass]="getControlValidationClasses(amountControl)"
         />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
       </div>
       <div class="form-group">
         <label for="Capacity">Capacity</label>
@@ -37,7 +51,14 @@
           formControlName="capacity"
           placeholder="Capacity"
           required
+          [ngClass]="getControlValidationClasses(capacityControl)"
         />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
       </div>
       <div class="form-group">
         <label for="Description">Description</label>
@@ -48,7 +69,14 @@
           formControlName="description"
           placeholder="Description"
           required
+          [ngClass]="getControlValidationClasses(descriptionControl)"
         ></textarea>
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
       </div>
     </div>
     <div class="col-md-6">

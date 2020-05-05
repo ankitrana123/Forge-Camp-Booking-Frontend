@@ -14,6 +14,7 @@ export class AdminLoginComponent implements OnInit {
 
   EmailControl: FormControl;
   PasswordControl: FormControl;
+  textControl:FormControl;
 
   isLoginError: boolean = false;
   constructor(private service: CampServices, private router: Router) {}
@@ -21,6 +22,7 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
     this.EmailControl = new FormControl('', [Validators.required]);
     this.PasswordControl = new FormControl('', [Validators.required]);
+    this.textControl= new FormControl('', [Validators.required]);
 
     this.loginForm = new FormGroup({
       Email: this.EmailControl,
@@ -45,5 +47,12 @@ export class AdminLoginComponent implements OnInit {
 
   newMessage() {
     this.service.nextMessage(true);
+  }
+
+  getControlValidationClasses(control: FormControl) {
+    return {
+      'is-invalid': control.touched && control.invalid,
+      'is-valid': control.touched && control.valid,
+    };
   }
 }

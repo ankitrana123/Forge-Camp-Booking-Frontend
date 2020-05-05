@@ -20,7 +20,8 @@ export class ManagebookingComponent implements OnInit {
 
   public bookManageForm: FormGroup;
 
-  referencenumber: FormControl;
+  referencenumberControl: FormControl;
+  textControl:FormControl;
 
   constructor(
     private services: CampServices,
@@ -29,10 +30,11 @@ export class ManagebookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.referencenumber = new FormControl('', [Validators.required]);
+    this.referencenumberControl = new FormControl('', [Validators.required]);
+    this.textControl = new FormControl('',[Validators.required]);
 
     this.bookManageForm = new FormGroup({
-      referencenumber: this.referencenumber,
+      referencenumber: this.referencenumberControl,
     });
   }
   OnFormSubmit() {
@@ -40,5 +42,12 @@ export class ManagebookingComponent implements OnInit {
     // console.log(booknumber);
 
     this.router.navigate(['/editbooking', booknumber]);
+  }
+
+  getControlValidationClasses(control: FormControl) {
+    return {
+      'is-invalid': control.touched && control.invalid,
+      'is-valid': control.touched && control.valid,
+    };
   }
 }

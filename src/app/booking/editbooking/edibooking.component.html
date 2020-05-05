@@ -33,7 +33,7 @@
                   <td>
                     <span class="Delete">
                       <i class="far fa-trash-alt" 
-                      (click)="DeleteBooking(requiredBooking.referenceNumber)"></i>
+                      (click)="DeleteBooking(requiredBooking.referenceNumber)" *ngIf="isFutureBooking"></i>
                     </span>
                   </td>
                 </tr>

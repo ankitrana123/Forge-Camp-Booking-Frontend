@@ -28,6 +28,7 @@ export class BookcampComponent implements OnInit {
   countryControl: FormControl;
   phoneControl: FormControl;
   zipcodeControl: FormControl;
+  textControl:FormControl;
 
   constructor(
     private services: CampServices,
@@ -56,6 +57,8 @@ export class BookcampComponent implements OnInit {
     this.zipcodeControl = new FormControl('', [Validators.required]);
     this.phoneControl = new FormControl('', [Validators.required]);
     this.countryControl = new FormControl('', [Validators.required]);
+    this.textControl = new FormControl('',[Validators.required]);
+
 
     this.bookForm = new FormGroup({
       TotalNights: this.capacityControl,
@@ -76,5 +79,11 @@ export class BookcampComponent implements OnInit {
       window.alert('Your booking Reference number is:' + response);
       this.router.navigate(['/Camp/AllCampDetails']);
     });
+  }
+  getControlValidationClasses(control: FormControl) {
+    return {
+      'is-invalid': control.touched && control.invalid,
+      'is-valid': control.touched && control.valid,
+    };
   }
 }

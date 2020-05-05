@@ -12,7 +12,14 @@
       formControlName="Email"
       placeholder="Enter Email Id"
       required
+      [ngClass]="getControlValidationClasses(EmailControl)"
     />
+    <div class="valid-feedback" *ngIf="textControl.valid">
+        Looks good!
+      </div>
+      <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+        This field is required
+      </div>
   </div>
   <div class="form-group">
     <label for="Password">Password</label>
@@ -23,7 +30,14 @@
       formControlName="Password"
       placeholder="Enter Password"
       required
+      [ngClass]="getControlValidationClasses(PasswordControl)"
     />
+    <div class="valid-feedback" *ngIf="textControl.valid">
+        Looks good!
+      </div>
+      <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+        This field is required
+      </div>
   </div>
 
   <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">

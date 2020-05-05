@@ -3,6 +3,7 @@ import { CampServices } from '../Service/CampServices';
 import { ICamp } from '../Models/camp.interface';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-camps',
@@ -13,6 +14,7 @@ export class CampsComponent implements OnInit {
   checkInControl: FormControl;
   checkOutControl: FormControl;
   capacityControl: FormControl;
+  textControl: FormControl;
 
   checkIn: any;
   checkOut: any;
@@ -20,7 +22,8 @@ export class CampsComponent implements OnInit {
   // camps: ICamp[]
   FilterCamps: FormGroup;
 
-  p: number = 1;
+  totalRecords: number
+  page: number = 1
 
   constructor(
     private readonly service: CampServices,
@@ -40,6 +43,8 @@ export class CampsComponent implements OnInit {
     this.FilteredCampsInit();
 
     this.getAllCamps();
+
+    this.textControl = new FormControl('', [Validators.required]);
   }
 
   FilteredCampsInit() {
@@ -78,6 +83,7 @@ export class CampsComponent implements OnInit {
 
   getAllCamps() {
     this.service.getAllCamps().subscribe((camps: ICamp[]) => {
+      this.totalRecords = camps.length
       this.CampList = camps;
     });
   }

@@ -1,4 +1,3 @@
-<!--  -->
 <div class="row">
   <div class="col-md-4">
     <form
@@ -20,6 +19,15 @@
               formControlName="checkInDate"
               [ngClass]="getControlValidationClasses(checkInControl)"
             />
+            <div class="valid-feedback" *ngIf="textControl.valid">
+              Looks good!
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="textControl.touched && textControl.errors?.required"
+            >
+              This field is required
+            </div>
             <div
               class="invalid-feedback"
               *ngIf="checkInControl.touched && checkInControl.errors?.required"
@@ -54,7 +62,7 @@
               <select formControlName="capacity">
                 <option [value]="0" selected="selected">Any</option>
                 <option
-                  *ngFor="let capacity of populateFilter() "
+                  *ngFor="let capacity of populateFilter()"
                   [value]="capacity"
                 >
                   {{ capacity }}
@@ -74,7 +82,18 @@
     <div style="float: left; width: 75%;">
       <!-- use ngIf to filter camps according to max capacity -->
       <div class="card-group card-deck">
-        <div *ngFor="let camp of CampList ">
+        <div
+          *ngFor="
+            let camp of CampList
+              | paginate
+                : {
+                    id: 'pagination',
+                    itemsPerPage: 6,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }
+          "
+        >
           <div class="card" style="width: 15rem; margin: 15px;">
             <img class="card-img-top" [src]="camp.image" alt="Card image cap" />
             <div class="card-body">
@@ -110,6 +129,12 @@
             </div>
           </div>
         </div>
+        <pagination-controls
+          id="pagination"
+          maxSize="5"
+          directionLinks="true"
+          (pageChange)="page = $event"
+        ></pagination-controls>
       </div>
     </div>
   </div>

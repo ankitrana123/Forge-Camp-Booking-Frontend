@@ -75,8 +75,9 @@
           id="state"
           formControlName="State"
           placeholder="State"
-          required
+          
           [ngClass]="getControlValidationClasses(stateControl)"
+          required
         />
         <div class="valid-feedback" *ngIf="textControl.valid">
           Looks good!
@@ -184,5 +185,5 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Confirm Booking</button>
+  <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Confirm Booking</button>
 </form>

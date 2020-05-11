@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+
 @Component({
   selector: 'app-camps',
   templateUrl: './camps.component.html',
@@ -19,8 +20,11 @@ export class CampsComponent implements OnInit {
   checkIn: any;
   checkOut: any;
   capacity: any;
+  initialCapacity:number=0;
   
   FilterCamps: FormGroup;
+
+
 
   //total records to be seen for pagging on a page
   totalRecords: number
@@ -34,6 +38,7 @@ export class CampsComponent implements OnInit {
   CampList: ICamp[];
 
   ngOnInit() {
+    
     this.checkIn = this.getDate(new Date(new Date().getTime()));
     this.checkOut = this.getDate(
       new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
@@ -43,9 +48,9 @@ export class CampsComponent implements OnInit {
     this.allFilteredCamps(this.checkIn, this.checkOut, this.capacity);
     this.FilteredCampsInit();
 
-    this.getAllCamps();
-
     this.textControl = new FormControl('', [Validators.required]);
+
+
   }
 
 /**
@@ -56,7 +61,7 @@ export class CampsComponent implements OnInit {
     this.checkOutControl = new FormControl(this.checkOut, [
       Validators.required,
     ]);
-    this.capacityControl = new FormControl('', [Validators.required]);
+    this.capacityControl = new FormControl(this.initialCapacity, [Validators.required]);
     this.FilterCamps = new FormGroup({
       checkInDate: this.checkInControl,
       checkOutDate: this.checkOutControl,
@@ -75,6 +80,7 @@ export class CampsComponent implements OnInit {
       .getFilteredCamps(checkInDate, checkOutDate, capacity)
       .subscribe((res: ICamp[]) => {
         this.CampList = res;
+        console.log(res);
       });
   }
 /**
@@ -91,15 +97,7 @@ export class CampsComponent implements OnInit {
       date.getDate();
     return output;
   }
-/**
- * Get the details of all the camps to be rendered on the page
- */
-  getAllCamps() {
-    this.service.getAllCamps().subscribe((camps: ICamp[]) => {
-      this.totalRecords = camps.length
-      this.CampList = camps;
-    });
-  }
+
 
   /**
    * Navigates to create a new camp
@@ -136,4 +134,9 @@ export class CampsComponent implements OnInit {
   bookMyCamp(camp: ICamp) {
     this.router.navigate(['/bookCamp', camp.id]);
   }
+
+  printStars(camp:ICamp){
+    return new Array(camp.rating);
+  }
+  
 }

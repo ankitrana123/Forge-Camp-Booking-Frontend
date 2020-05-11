@@ -1,29 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Camps</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" >Forge Camp Booking</a>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/Camp/CreateCamp">Add Camp</a>
+        <a class="nav-link" *ngIf="isAdminFlag" routerLink="/Camp/CreateCamp"
+          >Add Camp</a
+        >
       </li>
+
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          *ngIf="isAdminFlag"
+          routerLink="/ManageCamp/AllCamps"
+          >Manage Camps</a
+        >
+      </li>
+
       <li class="nav-item active">
         <a class="nav-link" routerLink="/Camp/AllCampDetails">Show Camps</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/ManageCamp/AllCamps">Manage Camps</a>
-      </li>
+
       <li class="nav-item active">
         <a class="nav-link" routerLink="/manageBooking">Manage Booking</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" *ngIf="!message" routerLink="/AdminLogin"
+        <a class="nav-link" *ngIf="!isAdminFlag" routerLink="/AdminLogin"
           >Admin Login</a
         >
       </li>
       <li class="nav-item active">
         <a
+        
           class="nav-link"
-          *ngIf="message"
+          *ngIf="isAdminFlag"
           routerLink="/AdminLogin"
           (click)="logOut()"
           >Logout</a

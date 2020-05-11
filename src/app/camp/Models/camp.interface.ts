@@ -5,4 +5,5 @@ export interface ICamp {
   capacity: number;
   title: string;
   image: string;
+  rating:number;
 }

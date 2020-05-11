@@ -8,12 +8,12 @@ import { Service } from '../Service/Service';
   styleUrls: ['./container.component.css'],
 })
 export class ContainerComponent implements OnInit {
-  message: boolean;
+  isAdminFlag: boolean;
 
   constructor(private router: Router, private service: Service) {}
 
   ngOnInit(): void {
-    this.service.sharedMessage.subscribe((message) => (this.message = message));
+    this.service.sharedMessage.subscribe((message) => (this.isAdminFlag = message));
   }
 
   logOut() {
@@ -21,4 +21,5 @@ export class ContainerComponent implements OnInit {
     localStorage.removeItem('userToken');
     this.router.navigate(['/AdminLogin']);
   }
+  
 }

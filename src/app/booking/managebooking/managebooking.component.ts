@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/camp/Service/Service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ICamp } from 'src/app/camp/Models/camp.interface';
+
 
 import {
   FormGroup,
@@ -58,4 +58,9 @@ export class ManagebookingComponent implements OnInit {
       'is-valid': control.touched && control.valid,
     };
   }
-}
+
+
+
+   
+  }
+

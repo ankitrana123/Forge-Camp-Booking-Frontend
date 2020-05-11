@@ -17,7 +17,9 @@
           placeholder="Camp Name"
           required
           [ngClass]="getControlValidationClasses(titleControl)"
+         
         />
+        
         <div class="valid-feedback" *ngIf="textControl.valid">
             Looks good!
           </div>
@@ -123,5 +125,5 @@
     </div>
     
   </div>
-  <button type="submit" class="btn btn-primary" >Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="campForm.invalid">Submit</button>
 </form>

@@ -1,17 +1,20 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <form
       class="needs-validation FilterCamps"
       novalidate
       [formGroup]="FilterCamps"
       (ngSubmit)="onFormSubmit()"
     >
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;max-height: 25rem;">
+      <div
+        class="card text-white bg-dark mb-3"
+        style="max-width: 14rem; max-height: 25rem;"
+      >
         <div class="card-header">Search</div>
         <div class="card-body">
           <div class="row filterControls">
             <div class="col">CheckInDate</div>
-            <div class="col-md-2"></div>
+
             <input
               type="date"
               id="CheckInDate"
@@ -38,7 +41,7 @@
 
           <div class="row filterControls">
             <div class="col">CheckOutDate</div>
-            <div class="col-md-2"></div>
+
             <input
               type="date"
               id="CheckOutDate"
@@ -60,7 +63,9 @@
             <div class="col">Capacity</div>
             <div class="col-md-6">
               <select formControlName="capacity">
-                <option [value]="0" selected="selected" class="dropDown">Any</option>
+                <option [value]="0" class="dropDown"
+                  >Any</option
+                >
                 <option
                   *ngFor="let capacity of populateFilter()"
                   [value]="capacity"
@@ -78,8 +83,8 @@
     </form>
   </div>
 
-  <div class="col-md-8">
-    <div style="float: left; width: 75%;">
+  <div class="col-md-9">
+    <div style="float: left; width: 100%;">
       <div class="card-group card-deck">
         <div
           *ngFor="
@@ -93,33 +98,45 @@
                   }
           "
         >
-          <div class="card" style="width: 15rem; margin: 15px;">
+          <div class="card" style="width: 20rem; margin: 10px;">
             <img class="card-img-top" [src]="camp.image" alt="Card image cap" />
             <div class="card-body">
               <div class="row">
-                <h5 class="card-title">{{ camp.name }}</h5>
+               <h5 class="card-title">{{ camp.title }}</h5>
               </div>
-              <p class="card-text">{{ camp.description }}</p>
+              <span class="text-success">About Camp: </span><p class="card-text">{{ camp.description }}</p>
               <div>
                 <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">Amount</th>
                       <th scope="col">Capacity</th>
+                      <th scope="col">Rating</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>{{ camp.amount | currency: "INR" }}</td>
                       <td>{{ camp.capacity }}</td>
+                      <td>
+                        <ul
+                          class="list-inline custom-star"
+                          *ngFor="let star of printStars(camp)"
+                          style="display: inline-block;"
+                        >
+                          <li>
+                            <i class="fa fa-star"></i>
+                          </li>
+                        </ul>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div>
                 <button
-                  style="margin-left: 40px; margin-top: -20px;"
-                  class="btn btn-primary"
+                  style="margin-left: 70px; margin-top: -20px;"
+                  class="btn btn-outline-success my-2 my-sm-0"
                   (click)="bookMyCamp(camp)"
                 >
                   Book Camp
